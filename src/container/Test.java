@@ -9,6 +9,9 @@ public class Test {
         System.out.println(liste.element());
         System.out.println(liste.size());
         System.out.println(liste.insertElement(10));
-        System.out.println("Hello World");
+		System.out.println(liste.size());
+        while (!liste.isEmpty()) {
+            System.out.println(liste.popElement());
+        }        
     }
 }

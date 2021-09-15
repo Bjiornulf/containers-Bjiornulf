@@ -63,14 +63,15 @@ public class IntFIFO implements Queue<Integer>{
 	}
 
 	/**
-	 * Tries to double the size of the Queue.
+	 * Tries to double ithe size of the Queue.
 	 * Returns true if successful
 	 * 
 	 * @return success of the size increase
 	 */
 	private boolean doubleSize() {
+		Integer[] newArray; //declare before try-block (otherwise only visible in block)
 		try {
-			Integer[] newArray = new Integer[this.array.length * 2];
+			newArray = new Integer[this.array.length * 2];
 		}
 		catch (Exception e) {
 			return false;
@@ -109,10 +110,11 @@ public class IntFIFO implements Queue<Integer>{
 			throw new NoSuchElementException("IntFIFO empty");
 		}
 		Integer returnValue = this.array[this.start];
-		this.start = (this.start + 1) % this.array.length;
+		// checking if removing the value emptied the Queue
 		if (this.start == this.end) {
 			this.isEmpty = true;
 		}
+		this.start = (this.start + 1) % this.array.length;
 		return returnValue;
 	}
 
