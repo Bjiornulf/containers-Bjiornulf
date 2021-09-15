@@ -43,7 +43,8 @@ public class IntFIFO implements Queue<Integer>{
 	}
 
 	/**
-	 * This method allows the insertion of an Integer in the FIFO Queue.
+	 * Tries to insert an element in the Queue. If the Queue is full,
+	 * it will try to double the size before adding the element.
 	 * Returns a boolean indication if the insersion succeeded or not.
 	 * 
 	 * @param	i	the integer to add
@@ -51,11 +52,36 @@ public class IntFIFO implements Queue<Integer>{
 	 */
 	public boolean insertElement(Integer i) {
 		if (!this.isEmpty && (this.end - this.start + 1) % this.array.length == 0) {
-			return false;
+			if (this.doubleSize()) {
+				return this.insertElement(i);
+			}
 		}
 		this.end = (this.end + 1) % this.array.length;
 		this.array[this.end] = i;
 		this.isEmpty = false;
+		return true;
+	}
+
+	/**
+	 * Tries to double the size of the Queue.
+	 * Returns true if successful
+	 * 
+	 * @return success of the size increase
+	 */
+	private boolean doubleSize() {
+		try {
+			Integer[] newArray = new Integer[this.array.length * 2];
+		}
+		catch (Exception e) {
+			return false;
+		}
+		int i;
+		for (i = 0; i < this.array.length; i++) {
+			newArray[i] = this.array[(i + this.start) % this.array.length];
+		}
+		this.start = 0;
+		this.end = i - 1;
+		this.array = newArray;
 		return true;
 	}
 
