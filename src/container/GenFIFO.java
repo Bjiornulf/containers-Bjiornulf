@@ -4,7 +4,7 @@ import java.util.NoSuchElementException;
 import java.util.Iterator;
 
 /**
- * Implementation of an Integer specific FIFO Queue
+ * Implementation of a FIFO Queue
  * using circular arrays
  * 
  * @author Todor PEEV
