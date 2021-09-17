@@ -20,6 +20,9 @@ public class IntPriorityQueue implements Queue<Integer> {
         this.size = 0;
     }
 
+    /**
+     * Doubles the size of the array holding the Queue.
+     */
     private void doubleSize() {
         Integer[] newArray = new Integer[this.size*2];
         for (int i = 0; i < this.array.length; i++) {
@@ -41,6 +44,12 @@ public class IntPriorityQueue implements Queue<Integer> {
         return toReturn;
     }
 
+    /**
+     * Inserts an Integer in the Queue. If the insertions succeeds, return true;
+     * 
+     * @param e Integer to insert
+     * @return  Success of insertion
+     */
     @Override
     public boolean insertElement(Integer e) {
         if (this.size == this.array.length){
@@ -61,6 +70,11 @@ public class IntPriorityQueue implements Queue<Integer> {
         return true;
     }
 
+    /**
+     * Returns (without removing) the Integer with highest priority (i.e. the biggest Integer of the Queue)
+     * 
+     * @return The biggest Integer of the Queue
+     */
     @Override
     public Integer element() {
         if (this.size == 0) {
@@ -69,6 +83,11 @@ public class IntPriorityQueue implements Queue<Integer> {
         return this.array[0];
     }
 
+    /**
+     * Return and removes the Integer with highest priority (i.e. the biggest Integer of the Queue)
+     * 
+     * @return The biggest integer of the Queue
+     */
     @Override
     public Integer popElement() {
         if (this.size == 0) {
@@ -78,7 +97,7 @@ public class IntPriorityQueue implements Queue<Integer> {
         temp = this.array[0];
         this.array[0] = this.array[this.size - 1];
         this.array[this.size - 1] = temp;
-        this.size--; // we removed an element though it is still saved in the array
+        this.size--; // we removed an element though it is still held in the array
         int currentIndex = 0;
         int childIndex1 = 2 * currentIndex + 1;
         while (childIndex1 < this.size) {
@@ -97,11 +116,20 @@ public class IntPriorityQueue implements Queue<Integer> {
         return this.array[this.size];
     }
 
+    /**
+     * Return if Queue is empty
+     * @return is Queue empty
+     */
     @Override
     public boolean isEmpty() {
         return this.size == 0;
     }
 
+    /**
+     * Returns the size (number of elements) of the Queue
+     * 
+     * @return size of the Queue
+     */
     @Override
     public int size() {
         return this.size;
