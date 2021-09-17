@@ -31,9 +31,9 @@ public class IntFIFO implements Queue<Integer>{
 	}
 
 	/**
-	 * Returns the size of the Queue
+	 * Returns the number of elements in the Queue
 	 * 
-	 * @return size of the Queue
+	 * @return number of elements in the Queue
 	 */
 	public int size() {
 		if (this.isEmpty) {
@@ -43,14 +43,15 @@ public class IntFIFO implements Queue<Integer>{
 	}
 
 	/**
-	 * Tries to insert an element in the Queue. If the Queue is full,
+	 * Tries to insert an element at the end ofthe Queue. If the Queue is full,
 	 * it will try to double the size before adding the element.
-	 * Returns a boolean indication if the insersion succeeded or not.
+	 * Returns a boolean indicating if the insersion succeeded or not.
 	 * 
 	 * @param	i	the integer to add
 	 * @return 		boolean indicating the success of the insersion
 	 */
 	public boolean insertElement(Integer i) {
+		// check if array is full
 		if (!this.isEmpty && (this.end - this.start + 1) % this.array.length == 0) {
 			if (this.doubleSize()) {
 				return this.insertElement(i);
@@ -63,7 +64,7 @@ public class IntFIFO implements Queue<Integer>{
 	}
 
 	/**
-	 * Tries to double ithe size of the Queue.
+	 * Tries to double the size of the Queue.
 	 * Returns true if successful
 	 * 
 	 * @return success of the size increase
@@ -87,7 +88,7 @@ public class IntFIFO implements Queue<Integer>{
 	}
 
 	/**
-	 * Returns the hightest element of the Queue without removing it
+	 * Returns the first element of the Queue without removing it
 	 * 
 	 * @return highest Integer of the FIFO Queue
 	 * @throws NoSuchElementException when Queue is empty
@@ -100,7 +101,7 @@ public class IntFIFO implements Queue<Integer>{
 	}
 
 	/**
-	 * Returns the first inserted element in the Queue
+	 * Returns the first element of the Queue
 	 * 
 	 * @return		first inserted element in the Queue
 	 * @throws NoSuchElementException when Queue is empty 
@@ -110,7 +111,7 @@ public class IntFIFO implements Queue<Integer>{
 			throw new NoSuchElementException("IntFIFO empty");
 		}
 		Integer returnValue = this.array[this.start];
-		// checking if removing the value emptied the Queue
+		// checking if removing the value emptied the Queue before updating this.start
 		if (this.start == this.end) {
 			this.isEmpty = true;
 		}
