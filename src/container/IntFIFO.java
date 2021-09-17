@@ -88,7 +88,7 @@ public class IntFIFO implements Queue<Integer>{
 	 * @throws NoSuchElementException when Queue is empty
 	 */
 	public Integer element() {
-		if (this.isEmpty) {
+		if (this.isEmpty()) {
 			throw new NoSuchElementException("IntFIFO empty");
 		}
 		return this.array[this.start];
@@ -101,7 +101,7 @@ public class IntFIFO implements Queue<Integer>{
 	 * @throws NoSuchElementException when Queue is empty 
 	 */
 	public Integer popElement() {
-		if (this.isEmpty) {
+		if (this.isEmpty()) {
 			throw new NoSuchElementException("IntFIFO empty");
 		}
 		Integer returnValue = this.array[this.start];
