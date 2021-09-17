@@ -85,7 +85,7 @@ public class GenFIFO<E> implements Queue<E>{
 	/**
 	 * Returns the first element of the Queue without removing it
 	 * 
-	 * @return highest Integer of the FIFO Queue
+	 * @return first element of the FIFO Queue
 	 * @throws NoSuchElementException when Queue is empty
 	 */
 	public E element() {
@@ -96,9 +96,9 @@ public class GenFIFO<E> implements Queue<E>{
 	}
 
 	/**
-	 * Returns the first element of the Queue
+	 * Returns the first element of the Queue and removes it form the Queue
 	 * 
-	 * @return		first inserted element in the Queue
+	 * @return		first element in the Queue
 	 * @throws NoSuchElementException when Queue is empty 
 	 */
 	public E popElement() {
