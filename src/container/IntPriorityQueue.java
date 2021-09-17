@@ -6,7 +6,7 @@ import java.util.NoSuchElementException;
 import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
- * Implements Integer specific priority Queue
+ * Implements Integer specific priority Queue using heap-array
  * 
  * @author Todor PEEV
  */
