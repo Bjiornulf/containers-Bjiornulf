@@ -58,8 +58,7 @@ public class IntPriorityQueue implements Queue<Integer> {
             currentIndex = ancestorIndex;
             ancestorIndex = (currentIndex + 1) / 2 - 1;
         }
-            depth--;
-            return true;
+        return true;
     }
 
     @Override
