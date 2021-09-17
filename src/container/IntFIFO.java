@@ -11,9 +11,8 @@ import java.util.Iterator;
  */
 public class IntFIFO implements Queue<Integer>{
 	private Integer[] array;
-	private int start = 0;
-	private int end = -1;
-	private boolean isEmpty = true;
+	private int size = 0;
+
 	public IntFIFO(int capacity) {
 		this.array = new Integer[capacity];
 	}
@@ -27,7 +26,7 @@ public class IntFIFO implements Queue<Integer>{
 	 * @return is the Queue empty
 	 */
 	public boolean isEmpty() {
-		return this.isEmpty;
+		return this.size == 0;
 	}
 
 	/**
@@ -36,10 +35,7 @@ public class IntFIFO implements Queue<Integer>{
 	 * @return number of elements in the Queue
 	 */
 	public int size() {
-		if (this.isEmpty) {
-			return 0;
-		}
-		return (this.end - this.start) % this.array.length + 1;
+		return this.size;
 	}
 
 	/**
@@ -51,15 +47,14 @@ public class IntFIFO implements Queue<Integer>{
 	 * @return 		boolean indicating the success of the insersion
 	 */
 	public boolean insertElement(Integer i) {
-		// check if array is full
-		if (!this.isEmpty && (this.end - this.start + 1) % this.array.length == 0) {
+		// if array full, try to double its size
+		if (this.size == this.array.length) {
 			if (this.doubleSize()) {
 				return this.insertElement(i);
 			}
 		}
-		this.end = (this.end + 1) % this.array.length;
-		this.array[this.end] = i;
-		this.isEmpty = false;
+		this.array[(this.start + this.size) % this.array.length] = i;
+		this.size++;
 		return true;
 	}
 
@@ -77,12 +72,10 @@ public class IntFIFO implements Queue<Integer>{
 		catch (Exception e) {
 			return false;
 		}
-		int i;
-		for (i = 0; i < this.array.length; i++) {
+		for (int i = 0; i < this.size; i++) {
 			newArray[i] = this.array[(i + this.start) % this.array.length];
 		}
 		this.start = 0;
-		this.end = i - 1;
 		this.array = newArray;
 		return true;
 	}
@@ -112,9 +105,7 @@ public class IntFIFO implements Queue<Integer>{
 		}
 		Integer returnValue = this.array[this.start];
 		// checking if removing the value emptied the Queue before updating this.start
-		if (this.start == this.end) {
-			this.isEmpty = true;
-		}
+		this.size--;
 		this.start = (this.start + 1) % this.array.length;
 		return returnValue;
 	}
