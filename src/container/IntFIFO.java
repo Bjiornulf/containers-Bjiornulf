@@ -11,6 +11,7 @@ import java.util.Iterator;
  */
 public class IntFIFO implements Queue<Integer>{
 	private Integer[] array;
+	private int start = 0;
 	private int size = 0;
 
 	public IntFIFO(int capacity) {
