@@ -41,21 +41,21 @@ public class GenFIFO<E> implements Queue<E>{
 	}
 
 	/**
-	 * Tries to insert an element at the end ofthe Queue. If the Queue is full,
+	 * Tries to insert an element at the end of the Queue. If the Queue is full,
 	 * it will try to double the size before adding the element.
 	 * Returns a boolean indicating if the insersion succeeded or not.
 	 * 
-	 * @param	i	the integer to add
+	 * @param	e	the element to add
 	 * @return 		boolean indicating the success of the insersion
 	 */
-	public boolean insertElement(E i) {
+	public boolean insertElement(E e) {
 		// if array full, try to double its size
 		if (this.size == this.array.length) {
 			if (this.doubleSize()) {
 				return this.insertElement(i);
 			}
 		}
-		this.array[(this.start + this.size) % this.array.length] = i;
+		this.array[(this.start + this.size) % this.array.length] = e;
 		this.size++;
 		return true;
 	}
