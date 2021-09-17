@@ -71,8 +71,30 @@ public class IntPriorityQueue implements Queue<Integer> {
 
     @Override
     public Integer popElement() {
-        // TODO Auto-generated method stub
-        return null;
+        if (this.size == 0) {
+            throw new NoSuchElementException("Queue empty");
+        }
+        Integer temp;
+        temp = this.array[0];
+        this.array[0] = this.array[this.size - 1];
+        this.array[this.size - 1] = temp;
+        this.size--; // we removed an element though it is still saved in the array
+        int currentIndex = 0;
+        int childIndex1 = 2 * currentIndex + 1;
+        while (childIndex1 < this.size) {
+            if (childIndex1 < this.size - 1) {
+                childIndex1 = this.array[childIndex1] > this.array[childIndex1 + 1] ? childIndex1 : childIndex1 + 1;
+            }
+            if (this.array[currentIndex] > this.array[childIndex1]) {
+                break;
+            }
+            temp = this.array[currentIndex];
+            this.array[currentIndex] = this.array[childIndex1];
+            this.array[childIndex1] = temp;
+            currentIndex = childIndex1;
+            childIndex1 = 2 * currentIndex + 1;
+        }
+        return this.array[this.size];
     }
 
     @Override
