@@ -1,6 +1,6 @@
 package container;
 
-public class Test {
+public class TestIntPriorityQueue {
     public static void main(String[] args) {
         IntPriorityQueue liste = new IntPriorityQueue(10);
         for (int i = 10; i > 0; i--) {
