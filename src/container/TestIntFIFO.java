@@ -1,6 +1,6 @@
 package container;
 
-public class Test {
+public class TestIntFIFO {
     public static void main(String[] args) {
         IntFIFO liste = new IntFIFO(10);
         for (int i = 0; i < 10; i++) {
