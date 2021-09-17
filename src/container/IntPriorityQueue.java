@@ -1,9 +1,7 @@
 package container;
 
-import java.util.Currency;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
  * Implements Integer specific priority Queue using heap-array
