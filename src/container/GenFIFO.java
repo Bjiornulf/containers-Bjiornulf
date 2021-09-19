@@ -52,7 +52,7 @@ public class GenFIFO<E> implements Queue<E>{
 		// if array full, try to double its size
 		if (this.size == this.array.length) {
 			if (this.doubleSize()) {
-				return this.insertElement(i);
+				return this.insertElement(e);
 			}
 		}
 		this.array[(this.start + this.size) % this.array.length] = e;
