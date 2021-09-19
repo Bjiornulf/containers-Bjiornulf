@@ -8,7 +8,7 @@ import java.util.NoSuchElementException;
  * 
  * @author Todor PEEV
  */
-public class GenPriorityQueue<E extends Comparable> implements Queue<E> {
+public class GenPriorityQueue<E extends Comparable<E>> implements Queue<E> {
 
     private E[] array;
     private int size;
