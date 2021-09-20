@@ -1,7 +1,5 @@
 package container;
 
-import static org.junit.Assert.assertEquals;
-
 public class MainIntPriorityQueue {
     public static void main(String[] arg) {
 

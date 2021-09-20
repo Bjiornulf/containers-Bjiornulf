@@ -1,5 +1,10 @@
 {
     "java.project.sourcePaths": [
-        "src/"
+        "src/",
+        "test/"
+    ],
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "/usr/share/java/junit.jar"
     ]
 }
