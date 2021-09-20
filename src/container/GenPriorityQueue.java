@@ -100,7 +100,7 @@ public class GenPriorityQueue<E extends Comparable<E>> implements Queue<E> {
         int childIndex1 = 2 * currentIndex + 1;
         while (childIndex1 < this.size) {
             if (childIndex1 < this.size - 1) {
-                childIndex1 = this.array[childIndex1].compareTo(this.array[childIndex1]) > 0 ? childIndex1 : childIndex1 + 1;
+                childIndex1 = this.array[childIndex1].compareTo(this.array[childIndex1+1]) > 0 ? childIndex1 : childIndex1 + 1;
             }
             if (this.array[currentIndex].compareTo(this.array[childIndex1]) > 0) {
                 break;
