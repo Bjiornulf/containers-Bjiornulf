@@ -13,7 +13,17 @@ public class GenPriorityQueue<E extends Comparable<E>> implements Queue<E> {
     private E[] array;
     private int size;
 
+    /**
+     * Creates the priority queue with given capacity
+     * 
+     * @param capacity the initial capacity of the priority queue
+     * @throws NegavtiveArraySizeException
+     */
+    @SuppressWarnings("unckecked")
     public GenPriorityQueue(int capacity) {
+        if (capacity <= 0) {
+            throw new NegativeArraySizeException("Negative capacity provided. Should be positive");
+        }
         this.array = (E[]) new Comparable[capacity];
         this.size = 0;
     }
@@ -21,6 +31,7 @@ public class GenPriorityQueue<E extends Comparable<E>> implements Queue<E> {
     /**
      * Doubles the size of the array holding the Queue.
      */
+    @SuppressWarnings("unchecked")
     private void doubleSize() {
         E[] newArray = (E[]) new Comparable[this.size*2];
         for (int i = 0; i < this.array.length; i++) {
