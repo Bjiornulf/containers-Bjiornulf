@@ -15,9 +15,20 @@ public class GenFIFO<E> implements Queue<E>{
 	private int start = 0;
 	private int size = 0;
 
+	/**
+	 * Creates FIFO Queue with given capacity
+	 * 
+	 * @param capacity
+	 * @throws NegativeArraySizeException
+	 */
+	@SuppressWarnings("unchecked")
 	public GenFIFO(int capacity) {
+		if (capacity <= 0) {
+			throw new NegativeArraySizeException("Negative capacity provided : " + capacity + ". Capacity should be positive");
+		}
 		this.array = (E[]) new Object[capacity];
 	}
+
 	public Iterator<E> iterator() {
 		return null;
 	}
@@ -66,6 +77,7 @@ public class GenFIFO<E> implements Queue<E>{
 	 * 
 	 * @return success of the size increase
 	 */
+	@SuppressWarnings("unchecked")
 	private boolean doubleSize() {
 		E[] newArray; //declare before try-block (otherwise only visible in block)
 		try {
