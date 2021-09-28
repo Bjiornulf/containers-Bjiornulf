@@ -14,7 +14,16 @@ public class IntFIFO implements Queue<Integer>{
 	private int start = 0;
 	private int size = 0;
 
+	/**
+	 * Creates {@code IntFIFO} with given capacity
+	 * 
+	 * @param capacity
+	 * @throws IllegalArgumentException
+	 */
 	public IntFIFO(int capacity) {
+		if (capacity <= 0) {
+			throw new IllegalArgumentException("Given capacity : " + capacity + ". Capacity should be > 0");
+		}
 		this.array = new Integer[capacity];
 	}
 	public Iterator<Integer> iterator() {
@@ -50,9 +59,8 @@ public class IntFIFO implements Queue<Integer>{
 	public boolean insertElement(Integer i) {
 		// if array full, try to double its size
 		if (this.size == this.array.length) {
-			if (this.doubleSize()) {
-				return this.insertElement(i);
-			}
+			this.doubleSize();
+			return this.insertElement(i);
 		}
 		this.array[(this.start + this.size) % this.array.length] = i;
 		this.size++;
@@ -66,13 +74,7 @@ public class IntFIFO implements Queue<Integer>{
 	 * @return success of the size increase
 	 */
 	private boolean doubleSize() {
-		Integer[] newArray; //declare before try-block (otherwise only visible in block)
-		try {
-			newArray = new Integer[this.array.length * 2];
-		}
-		catch (Exception e) {
-			return false;
-		}
+		Integer[] newArray = new Integer[this.array.length * 2];
 		for (int i = 0; i < this.size; i++) {
 			newArray[i] = this.array[(i + this.start) % this.array.length];
 		}
