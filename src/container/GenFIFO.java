@@ -19,12 +19,12 @@ public class GenFIFO<E> implements Queue<E>{
 	 * Creates FIFO Queue with given capacity
 	 * 
 	 * @param capacity
-	 * @throws NegativeArraySizeException
+	 * @throws IllegalArgumentException
 	 */
 	@SuppressWarnings("unchecked")
 	public GenFIFO(int capacity) {
 		if (capacity <= 0) {
-			throw new NegativeArraySizeException("Negative capacity provided : " + capacity + ". Capacity should be positive");
+			throw new IllegalArgumentException("Provided capacity: " + capacity + ". Capacity should be > 0");
 		}
 		this.array = (E[]) new Object[capacity];
 	}
