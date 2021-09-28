@@ -15,9 +15,20 @@ public class GenFIFO<E> implements Queue<E>{
 	private int start = 0;
 	private int size = 0;
 
+	/**
+	 * Creates FIFO Queue with given capacity
+	 * 
+	 * @param capacity
+	 * @throws IllegalArgumentException
+	 */
+	@SuppressWarnings("unchecked")
 	public GenFIFO(int capacity) {
+		if (capacity <= 0) {
+			throw new IllegalArgumentException("Provided capacity: " + capacity + ". Capacity should be > 0");
+		}
 		this.array = (E[]) new Object[capacity];
 	}
+
 	public Iterator<E> iterator() {
 		return null;
 	}
@@ -51,9 +62,8 @@ public class GenFIFO<E> implements Queue<E>{
 	public boolean insertElement(E e) {
 		// if array full, try to double its size
 		if (this.size == this.array.length) {
-			if (this.doubleSize()) {
-				return this.insertElement(e);
-			}
+			this.doubleSize();
+			return this.insertElement(e);
 		}
 		this.array[(this.start + this.size) % this.array.length] = e;
 		this.size++;
@@ -66,14 +76,10 @@ public class GenFIFO<E> implements Queue<E>{
 	 * 
 	 * @return success of the size increase
 	 */
+	@SuppressWarnings("unchecked")
 	private boolean doubleSize() {
-		E[] newArray; //declare before try-block (otherwise only visible in block)
-		try {
-			newArray = (E[]) new Object[this.array.length * 2];
-		}
-		catch (Exception e) {
-			return false;
-		}
+		E[] newArray;
+		newArray = (E[]) new Object[this.array.length * 2];
 		for (int i = 0; i < this.size; i++) {
 			newArray[i] = this.array[(i + this.start) % this.array.length];
 		}
