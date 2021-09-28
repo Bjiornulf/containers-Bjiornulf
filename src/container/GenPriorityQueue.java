@@ -17,12 +17,12 @@ public class GenPriorityQueue<E extends Comparable<E>> implements Queue<E> {
      * Creates the priority queue with given capacity
      * 
      * @param capacity the initial capacity of the priority queue
-     * @throws NegavtiveArraySizeException
+     * @throws IllegalArgumentException
      */
-    @SuppressWarnings("unckecked")
+    @SuppressWarnings("unchecked")
     public GenPriorityQueue(int capacity) {
         if (capacity <= 0) {
-            throw new NegativeArraySizeException("Negative capacity provided. Should be positive");
+            throw new IllegalArgumentException("Provided capacity : " + capacity + ". Capacity should be > 0");
         }
         this.array = (E[]) new Comparable[capacity];
         this.size = 0;
