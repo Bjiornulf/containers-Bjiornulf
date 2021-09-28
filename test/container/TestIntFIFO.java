@@ -17,6 +17,11 @@ public class TestIntFIFO  {
         testList = new IntFIFO(10);
     }
     
+    @Test (expected = IllegalArgumentException.class)
+    public void test_illegalCreation() {
+        IntFIFO faultyList = new IntFIFO(0);
+    }
+
     @Test
     public void test_emptyCreation() {
         assertTrue(testList.isEmpty());
