@@ -13,7 +13,16 @@ public class IntPriorityQueue implements Queue<Integer> {
     private Integer[] array;
     private int size;
 
+    /**
+     * Creates {@code IntPriorityQueue} with given capacity
+     * 
+     * @param capacity initial capacity for the queue. Should be > 0
+     * @throws IllegalArgumentException
+     */
     public IntPriorityQueue(int capacity) {
+        if (capacity <= 0) {
+            throw new IllegalArgumentException("Given capacity : " + capacity + ". Capacity should be > 0");
+        }
         this.array = new Integer[capacity];
         this.size = 0;
     }
