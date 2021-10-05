@@ -30,7 +30,17 @@ public class GenFIFO<E> implements Queue<E>{
 	}
 
 	public Iterator<E> iterator() {
-		return null;
+		return new Itr();
+	}
+
+	public class Itr implements Iterator<E> {
+		private int index = 0;
+		public boolean hasNext() {
+			return index < GenFIFO.this.size;
+		}
+		public E next() {
+			return GenFIFO.this.array[(this.index++ + GenFIFO.this.start) % GenFIFO.this.array.length];
+		}
 	}
 
 	/**
