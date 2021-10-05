@@ -27,7 +27,20 @@ public class IntFIFO implements Queue<Integer>{
 		this.array = new Integer[capacity];
 	}
 	public Iterator<Integer> iterator() {
-		return null;
+		return new Itr();
+	}
+
+	class Itr implements Iterator<Integer> {
+		private int index;
+		public Itr() {
+			index = 0;
+		}
+		public boolean hasNext() {
+			return index < IntFIFO.this.size;
+		}
+		public Integer next() {
+			return IntFIFO.this.array[(this.index++ + IntFIFO.this.start) % IntFIFO.this.array.length];
+		}
 	}
 
 	/**
