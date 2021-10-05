@@ -30,7 +30,7 @@ public class IntFIFO implements Queue<Integer>{
 		return new Itr();
 	}
 
-	class Itr implements Iterator<Integer> {
+	private class Itr implements Iterator<Integer> {
 		private int index;
 		public Itr() {
 			index = 0;
