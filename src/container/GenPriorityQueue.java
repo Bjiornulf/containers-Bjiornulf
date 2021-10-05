@@ -42,7 +42,17 @@ public class GenPriorityQueue<E extends Comparable<E>> implements Queue<E> {
 
     @Override
     public Iterator<E> iterator() {
-        return null;
+        return new Itr();
+    }
+
+    private class Itr implements Iterator<E> {
+        private int index = 0;
+        public boolean hasNext() {
+            return index < GenPriorityQueue.this.size;
+        }
+        public E next() {
+            return GenPriorityQueue.this.array[this.index++];
+        }
     }
 
     public String toString() {
