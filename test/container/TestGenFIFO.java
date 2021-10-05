@@ -3,6 +3,7 @@ package container;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue; // also exist with assertFalse
+import static org.junit.Assert.assertFalse;
 
 import java.util.NoSuchElementException;
 
@@ -15,6 +16,11 @@ public class TestGenFIFO  {
     @Before
     public void create_emptyList() {
         testList = new GenFIFO<Integer>(10);
+    }
+
+    @Test (expected = IllegalArgumentException.class)
+    public void test_invalidCreation() {
+        GenFIFO<Integer> faultyList = new GenFIFO<Integer>(0);
     }
     
     @Test
@@ -37,9 +43,11 @@ public class TestGenFIFO  {
     public void test_singleInsertion() {
         assertTrue(testList.insertElement(0));
         assertEquals(testList.size(), 1);
+        assertFalse(testList.isEmpty());
         assertEquals(testList.element(), (Integer) 0); // returns Integer not int
         assertEquals(testList.popElement(), (Integer) 0);
         assertEquals(testList.size(), 0);
+        assertTrue(testList.isEmpty());
     }
 
     @Test

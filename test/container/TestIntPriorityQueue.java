@@ -3,6 +3,7 @@ package container;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue; // also exist with assertFalse
+import static org.junit.Assert.assertFalse;
 
 import java.util.NoSuchElementException;
 import java.util.ArrayList;
@@ -20,6 +21,11 @@ public class TestIntPriorityQueue  {
         testList = new IntPriorityQueue(10);
     }
     
+    @Test(expected = IllegalArgumentException.class)
+    public void test_illegalCreation() {
+        IntPriorityQueue faultyList = new IntPriorityQueue(0);
+    }
+
     @Test
     public void test_emptyCreation() {
         assertTrue(testList.isEmpty());
@@ -40,6 +46,7 @@ public class TestIntPriorityQueue  {
     public void test_singleInsertion() {
         assertTrue(testList.insertElement(0));
         assertEquals(testList.size(), 1);
+        assertFalse(testList.isEmpty());
         assertEquals(testList.element(), (Integer) 0); // returns Integer not int
         assertEquals(testList.popElement(), (Integer) 0);
         assertEquals(testList.size(), 0);
