@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue; // also exist with assertFalse
 
 import java.util.NoSuchElementException;
+import java.util.Iterator;
 
 import org.junit.After;
 import org.junit.Before;
@@ -59,6 +60,21 @@ public class TestIntFIFO  {
         assertEquals(testList.size(), 0);
     }
 
+	@Test
+	public void test_iterator() {
+		boolean[] seen = new boolean[10];
+		for (int i = 0; i < 10; i ++) {
+			testList.insertElement((Integer) i);
+			seen[i] = false;
+		}
+		Iterator<Integer> iter = testList.iterator();
+		while (iter.hasNext()) {
+			seen[iter.next()] = true;
+		}
+		for (int i = 0; i < 10; i++) {
+			assertTrue(seen[testList.popElement()]);
+		}
+	}
     @After
     public void test_empty() {
         assertEquals(testList.size(), 0);
