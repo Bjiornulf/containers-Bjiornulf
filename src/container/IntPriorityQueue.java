@@ -40,7 +40,17 @@ public class IntPriorityQueue implements Queue<Integer> {
 
     @Override
     public Iterator<Integer> iterator() {
-        return null;
+        return new Itr();
+    }
+
+    private class Itr implements Iterator<Integer> {
+        private int index = 0;
+        public boolean hasNext() {
+            return index < IntPriorityQueue.this.size;
+        }
+        public Integer next() {
+            return IntPriorityQueue.this.array[index++];
+        }
     }
 
     public String toString() {

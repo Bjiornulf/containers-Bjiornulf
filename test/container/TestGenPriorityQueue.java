@@ -9,6 +9,7 @@ import java.util.NoSuchElementException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Collections;
+import java.util.Iterator;
 
 import org.junit.After;
 import org.junit.Before;
@@ -69,6 +70,22 @@ public class TestGenPriorityQueue  {
             }
         }  
     }
+
+	@Test
+	public void test_iterator() {
+		boolean[] seen = new boolean[10];
+		for (int i = 0; i < 10; i++) {
+			testList.insertElement((Integer) i);
+			seen[i] = false;
+		}
+		Iterator<Integer> iter = testList.iterator();
+		while (iter.hasNext()) {
+			seen[iter.next()] = true;
+		}
+		while (!testList.isEmpty()) {
+			assertTrue(seen[testList.popElement()]);
+		}
+	}
 
     @After
     public void test_empty() {
