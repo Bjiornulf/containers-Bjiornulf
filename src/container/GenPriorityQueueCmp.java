@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 import java.util.Comparator;
 
 /**
- * Implements priority Queue using heap-array
+ * Implements priority Queue with a user-defined Comparator using heap-array
  * 
  * @author Todor PEEV
  */
@@ -19,6 +19,7 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
      * Creates the priority queue with given capacity
      * 
      * @param capacity the initial capacity of the priority queue
+	 * @param cmp user defined Comparator
      * @throws IllegalArgumentException
      */
     @SuppressWarnings("unchecked")
@@ -67,9 +68,9 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
     }
 
     /**
-     * Inserts an Integer in the Queue. If the insertions succeeds, return true;
+     * Inserts an element in the Queue. If the insertions succeeds, return true;
      * 
-     * @param e Integer to insert
+     * @param e Element to insert
      * @return  Success of insertion
      */
     @Override
@@ -93,9 +94,9 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
     }
 
     /**
-     * Returns (without removing) the Integer with highest priority (i.e. the biggest Integer of the Queue)
+     * Returns (without removing) the element with highest priority (i.e. the biggest element of the Queue)
      * 
-     * @return The biggest Integer of the Queue
+     * @return The biggest element of the Queue
      */
     @Override
     public E element() {
@@ -106,7 +107,7 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
     }
 
     /**
-     * Return and removes the Integer with highest priority (i.e. the biggest Integer of the Queue)
+     * Return and removes the element with highest priority (i.e. the biggest element of the Queue)
      * 
      * @return The biggest integer of the Queue
      */
