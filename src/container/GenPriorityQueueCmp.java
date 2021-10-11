@@ -13,6 +13,7 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
 
     private E[] array;
     private int size;
+	private Comparator<? super E> cmp;
 
     /**
      * Creates the priority queue with given capacity
@@ -21,12 +22,13 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
      * @throws IllegalArgumentException
      */
     @SuppressWarnings("unchecked")
-    public GenPriorityQueueCmp(int capacity, Comparator<E> cmp) {
+    public GenPriorityQueueCmp(int capacity, Comparator<? super E> cmp) {
         if (capacity <= 0) {
             throw new IllegalArgumentException("Provided capacity : " + capacity + ". Capacity should be > 0");
         }
         this.array = (E[]) new Object[capacity];
         this.size = 0;
+		this.cmp = cmp;
     }
 
     /**
@@ -49,10 +51,10 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
     private class Itr implements Iterator<E> {
         private int index = 0;
         public boolean hasNext() {
-            return index < GenPriorityQueue.this.size;
+            return index < GenPriorityQueueCmp.this.size;
         }
         public E next() {
-            return GenPriorityQueue.this.array[this.index++];
+            return GenPriorityQueueCmp.this.array[this.index++];
         }
     }
 
@@ -79,7 +81,7 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
         int currentIndex = this.size - 1;
         int ancestorIndex = (currentIndex + 1) / 2 - 1;
         E temp;
-        while (currentIndex > 0 && this.array[currentIndex].compareTo(this.array[ancestorIndex]) > 0) {
+        while (currentIndex > 0 && this.cmp.compare(this.array[currentIndex],this.array[ancestorIndex]) > 0) {
             temp = this.array[ancestorIndex];
             this.array[ancestorIndex] = this.array[currentIndex];
             this.array[currentIndex] = temp;
@@ -122,9 +124,9 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
         int childIndex1 = 2 * currentIndex + 1;
         while (childIndex1 < this.size) {
             if (childIndex1 < this.size - 1) {
-                childIndex1 = this.array[childIndex1].compareTo(this.array[childIndex1+1]) > 0 ? childIndex1 : childIndex1 + 1;
+                childIndex1 = this.cmp.compare(this.array[childIndex1], this.array[childIndex1+1]) > 0 ? childIndex1 : childIndex1 + 1;
             }
-            if (this.array[currentIndex].compareTo(this.array[childIndex1]) > 0) {
+            if (this.cmp.compare(this.array[currentIndex], this.array[childIndex1]) > 0) {
                 break;
             }
             temp = this.array[currentIndex];
