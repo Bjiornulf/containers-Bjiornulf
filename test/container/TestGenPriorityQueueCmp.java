@@ -31,7 +31,7 @@ public class TestGenPriorityQueueCmp  {
 
     @Test(expected = IllegalArgumentException.class)
     public void test_illegalCreation() {
-        GenPriorityQueue<Integer> faultyList = new GenPriorityQueue<Integer>(0);
+        GenPriorityQueueCmp<Integer> faultyList = new GenPriorityQueueCmp<Integer>(0, new MyComparator());
     }
     
     @Test
