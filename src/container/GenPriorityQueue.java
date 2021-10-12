@@ -50,7 +50,10 @@ public class GenPriorityQueue<E extends Comparable<E>> implements Queue<E> {
         public boolean hasNext() {
             return index < GenPriorityQueue.this.size;
         }
-        public E next() {
+        public E next() throws NoSuchElementException {
+			if (this.index >= GenPriorityQueue.this.size) {
+				throw new NoSuchElementException("No more elements left in Iterator");
+			}
             return GenPriorityQueue.this.array[this.index++];
         }
     }
