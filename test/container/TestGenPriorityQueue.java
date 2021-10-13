@@ -71,6 +71,11 @@ public class TestGenPriorityQueue  {
         }  
     }
 
+	@Test(expected=NoSuchElementException.class)
+	public void test_iteratorException() {
+		testList.iterator().next();
+	}
+
 	@Test
 	public void test_iterator() {
 		boolean[] seen = new boolean[10];
