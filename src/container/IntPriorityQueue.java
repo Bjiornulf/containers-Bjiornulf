@@ -48,7 +48,10 @@ public class IntPriorityQueue implements Queue<Integer> {
         public boolean hasNext() {
             return index < IntPriorityQueue.this.size;
         }
-        public Integer next() {
+        public Integer next() throws NoSuchElementException {
+			if (index >= IntPriorityQueue.this.size) {
+				throw new NoSuchElementException("No more elements to iterate on. Consider checking with hasNext()");
+			}
             return IntPriorityQueue.this.array[index++];
         }
     }

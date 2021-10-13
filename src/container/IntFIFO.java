@@ -38,7 +38,10 @@ public class IntFIFO implements Queue<Integer>{
 		public boolean hasNext() {
 			return index < IntFIFO.this.size;
 		}
-		public Integer next() {
+		public Integer next() throws NoSuchElementException {
+			if (this.index >= IntFIFO.this.size) {
+				throw new NoSuchElementException("No more elements to iterate on. Consider checking with hasNext()");
+			}
 			return IntFIFO.this.array[(this.index++ + IntFIFO.this.start) % IntFIFO.this.array.length];
 		}
 	}

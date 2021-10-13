@@ -60,6 +60,11 @@ public class TestIntFIFO  {
         assertEquals(testList.size(), 0);
     }
 
+	@Test(expected=NoSuchElementException.class)
+	public void test_iteratorException() {
+		testList.iterator().next();
+	}
+
 	@Test
 	public void test_iterator() {
 		boolean[] seen = new boolean[10];

@@ -38,7 +38,10 @@ public class GenFIFO<E> implements Queue<E>{
 		public boolean hasNext() {
 			return index < GenFIFO.this.size;
 		}
-		public E next() {
+		public E next() throws NoSuchElementException {
+			if (this.index >= GenFIFO.this.size) {
+				throw new NoSuchElementException("No more elements to iterate on. Consider checking with hasNext()");
+			}
 			return GenFIFO.this.array[(this.index++ + GenFIFO.this.start) % GenFIFO.this.array.length];
 		}
 	}

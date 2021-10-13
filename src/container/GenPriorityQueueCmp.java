@@ -55,6 +55,9 @@ public class GenPriorityQueueCmp<E> implements Queue<E> {
             return index < GenPriorityQueueCmp.this.size;
         }
         public E next() {
+			if (this.index >= GenPriorityQueueCmp.this.size) {
+				throw new NoSuchElementException("No more elements to iterate on. Consider checking with hasNext()");
+			}
             return GenPriorityQueueCmp.this.array[this.index++];
         }
     }
